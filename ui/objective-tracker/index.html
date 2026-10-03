@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gothic Objective Tracker — UI Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="objective-tracker.css" />
+</head>
+<body>
+  <div class="gallery">
+    <header class="gallery__head">
+      <p class="eyebrow">Unreal HUD Concept</p>
+      <h1>Gothic Objective Tracker</h1>
+      <p class="lede">Demir çerçeve · karga · mum ışığı · altın ilerleme rayı</p>
+    </header>
+
+    <section class="panel">
+      <h2>Oyunda yerleşim</h2>
+      <img src="mockup-ingame-final.jpg" alt="Redesigned objective tracker overlaid on the game scene" />
+    </section>
+
+    <section class="panel panel--split">
+      <div>
+        <h2>Widget close-up</h2>
+        <img src="mockup-widget-closeup.jpg" alt="Close-up of the gothic objective plaque" />
+      </div>
+      <div>
+        <h2>İzole asset referansı</h2>
+        <img src="objective-widget-isolated.jpg" alt="Isolated objective widget concept" />
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Canlı CSS prototip (UMG hiyerarşisi için)</h2>
+      <div class="stage stage--live" id="stage">
+        <img class="bg" src="reference-ingame-clean.jpg" alt="Cleaned in-game reference scene" />
+        <aside class="objective" role="status" aria-live="polite">
+          <div class="objective__iron">
+            <span class="corner corner--tl"></span>
+            <span class="corner corner--tr"></span>
+            <span class="corner corner--bl"></span>
+            <span class="corner corner--br"></span>
+            <span class="vine vine--top"></span>
+            <span class="vine vine--bottom"></span>
+            <div class="objective__rail" aria-hidden="true">
+              <div class="objective__rail-fill"></div>
+            </div>
+            <div class="objective__body">
+              <p class="objective__label">Current Objective</p>
+              <h1 class="objective__title">Read the Letter on Your Desk</h1>
+              <p class="objective__desc">Read the letter waiting on Jonathan's desk</p>
+              <p class="objective__count"><span>0</span>/<span>1</span></p>
+            </div>
+            <div class="objective__ornament" aria-hidden="true">
+              <svg class="raven" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 70c8-6 16-18 22-28 4-7 14-18 26-20 3 8 2 16-1 22 10-2 22 2 30 10 6 6 10 14 11 22-10-4-20-4-30-1 2 6 2 12 0 18-8-6-16-8-26-8-8 0-18 3-26 8 2-8 0-16-6-23z" fill="#0a0a0c"/>
+                <path d="M66 28c6-1 14 1 20 6-8 2-14 6-18 12-2-6-2-12-2-18z" fill="#141418"/>
+                <path d="M42 42c-2 3-3 7-2 11" stroke="#2a2a30" stroke-width="1.2"/>
+                <circle cx="52" cy="36" r="1.6" fill="#c9a45c"/>
+                <path d="M70 34l14-3" stroke="#1a1a1e" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <div class="candle">
+                <div class="candle__flame"></div>
+                <div class="candle__wick"></div>
+                <div class="candle__body"></div>
+                <div class="candle__drip"></div>
+                <div class="candle__holder"></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const flame = document.querySelector(".candle__flame");
+    const rail = document.querySelector(".objective__rail-fill");
+    function tick(now) {
+      const t = now * 0.001;
+      const flicker = 0.85 + Math.sin(t * 11.3) * 0.08 + Math.sin(t * 23.7) * 0.05;
+      if (flame) {
+        flame.style.transform = `scale(${flicker.toFixed(3)}) translateY(${(Math.sin(t * 17) * 1.2).toFixed(2)}px)`;
+        flame.style.filter = `blur(${(0.3 + (1 - flicker) * 0.8).toFixed(2)}px)`;
+      }
+      if (rail) rail.style.opacity = (0.75 + Math.sin(t * 2.1) * 0.1).toFixed(3);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
