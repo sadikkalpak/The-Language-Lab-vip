@@ -6,7 +6,9 @@ Unofficial Digital SAT–style **Reading and Writing** practice set covering fou
 
 | File | Description |
 |------|-------------|
+| `SAT_Reading_Writing_Practice_Test_30.html` | Interactive browser test (score + explanations) |
 | `SAT_Reading_Writing_Practice_Test_30.pdf` | Ready-to-print test + answer key |
+| `generate_sat_rw_html.py` | Script that builds the HTML |
 | `generate_sat_rw_test.py` | Script that builds the PDF |
 
 ## Topic breakdown
@@ -25,14 +27,19 @@ Unofficial Digital SAT–style **Reading and Writing** practice set covering fou
 
 Suggested time: about **32 minutes**.
 
-## Regenerate the PDF
+## Open the HTML test
+
+Open `SAT_Reading_Writing_Practice_Test_30.html` in any browser. Choose answers, then click **Kontrol et** to score.
+
+## Regenerate
 
 ```bash
-pip install reportlab
+pip install reportlab   # PDF only
+python3 generate_sat_rw_html.py
 python3 generate_sat_rw_test.py
 ```
 
-Requires DejaVu fonts at `/usr/share/fonts/truetype/dejavu/` (for Turkish characters on the cover).
+PDF generation requires DejaVu fonts at `/usr/share/fonts/truetype/dejavu/`.
 
 ## Disclaimer
 

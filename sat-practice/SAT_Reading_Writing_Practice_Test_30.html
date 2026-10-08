@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAT Reading &amp; Writing Practice Test — 30 Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a2332;
+  --muted: #5a6570;
+  --line: #d8dee6;
+  --paper: #f6f3ee;
+  --card: #ffffff;
+  --navy: #1e3a5f;
+  --teal: #2f6f6d;
+  --ok: #166534;
+  --ok-bg: #dcfce7;
+  --bad: #991b1b;
+  --bad-bg: #fee2e2;
+  --shadow: 0 1px 0 rgba(30,58,95,.06), 0 12px 32px rgba(30,58,95,.08);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 420px at 10% -10%, #dfe9f2 0%, transparent 55%),
+    radial-gradient(700px 380px at 100% 0%, #e7efe9 0%, transparent 50%),
+    var(--paper);
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+header.hero {
+  text-align: center;
+  padding: 2.2rem 1.5rem 1.8rem;
+  background: linear-gradient(160deg, #1e3a5f 0%, #2f6f6d 100%);
+  color: #f8fafc;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+header.hero .eyebrow {
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .75rem;
+  opacity: .85;
+  margin: 0 0 .5rem;
+}
+header.hero h1 {
+  font-family: Literata, Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin: 0 0 .35rem;
+  line-height: 1.2;
+}
+header.hero .sub {
+  margin: 0;
+  opacity: .92;
+  font-size: 1.05rem;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  justify-content: center;
+  margin-top: 1.1rem;
+}
+.meta span {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  font-size: .85rem;
+}
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow);
+}
+.panel h2 {
+  font-family: Literata, Georgia, serif;
+  font-size: 1.15rem;
+  margin: 0 0 .6rem;
+  color: var(--navy);
+}
+.panel p, .panel li { color: var(--muted); font-size: .95rem; }
+.panel ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246,243,238,.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .7rem .9rem;
+  margin-bottom: 1.25rem;
+}
+.progress {
+  font-size: .9rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: .55rem 1rem;
+  background: var(--navy);
+  color: white;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.secondary {
+  background: white;
+  color: var(--navy);
+  border: 1px solid var(--line);
+}
+.question {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.question.correct { border-color: #86efac; }
+.question.wrong { border-color: #fca5a5; }
+.q-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .85rem;
+  align-items: baseline;
+  margin-bottom: .65rem;
+}
+.q-num { font-weight: 700; color: var(--navy); }
+.topic {
+  font-size: .78rem;
+  color: var(--teal);
+  font-style: italic;
+}
+.passage {
+  font-family: Literata, Georgia, serif;
+  background: #f0f4f8;
+  border-left: 3px solid var(--teal);
+  padding: .85rem 1rem;
+  margin: 0 0 .85rem;
+  border-radius: 0 10px 10px 0;
+  font-size: .98rem;
+}
+.stem { margin: 0 0 .7rem; font-weight: 600; }
+.choices { display: grid; gap: .45rem; }
+.choice {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  padding: .55rem .7rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+}
+.choice:hover { border-color: #9db4cc; background: #f8fafc; }
+.choice:has(input:checked) {
+  border-color: var(--teal);
+  background: #eef6f5;
+}
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.bubble {
+  flex: 0 0 1.55rem;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--navy);
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-top: .05rem;
+}
+.choice:has(input:checked) .bubble {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+}
+.choice-text { flex: 1; padding-top: .1rem; }
+.feedback {
+  margin-top: .85rem;
+  padding: .7rem .85rem;
+  border-radius: 10px;
+  font-size: .92rem;
+}
+.feedback.ok { background: var(--ok-bg); color: var(--ok); }
+.feedback.bad { background: var(--bad-bg); color: var(--bad); }
+#results { display: none; text-align: center; }
+#results.show { display: block; }
+#results .score {
+  font-family: Literata, Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: .2rem 0;
+}
+footer.note {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+}
+@media print {
+  body { background: white; }
+  .toolbar, .btn, header.hero .meta { display: none !important; }
+  .question { break-inside: avoid; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Digital SAT® Style</p>
+      <h1>Reading and Writing</h1>
+      <p class="sub">30 Soruluk Alıştırma Sınavı · İlk / Temel Konular</p>
+      <div class="meta">
+        <span>30 soru</span>
+        <span>~32 dakika</span>
+        <span>A · B · C · D</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>Yönergeler / Directions</h2>
+      <p>Her sorunun bir doğru cevabı vardır. Cevaplarını seç, bitince <strong>Kontrol et</strong>e bas.</p>
+      <p>Each question has one best answer. Select your choices, then click <strong>Check answers</strong>.</p>
+      <ul>
+        <li>1–5 Words in Context</li>
+        <li>6–9 Central Ideas &amp; Details · 10–12 Inferences · 13–15 Evidence</li>
+        <li>16–17 Structure &amp; Purpose · 18–20 Transitions · 21 Rhetorical Synthesis</li>
+        <li>22–25 Boundaries · 26–30 Form, Structure &amp; Sense</li>
+      </ul>
+    </section>
+
+    <div class="toolbar">
+      <div class="progress"><span id="answered">0</span> / 30 answered</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button type="button" class="btn secondary" id="resetBtn">Sıfırla</button>
+        <button type="button" class="btn" id="checkBtn">Kontrol et</button>
+      </div>
+    </div>
+
+    <form id="testForm">
+
+    <article class="question" data-num="1" data-answer="A" data-explain="Context of empty galleries and unmet expectations points to weak/unenthusiastic attendance.">
+      <div class="q-head">
+        <span class="q-num">Question 1</span>
+        <span class="topic">Craft and Structure · Words in Context</span>
+      </div>
+      <div class="passage">Although the museum’s new exhibit was widely advertised, attendance remained <b>tepid</b> throughout the opening week. Curators had expected crowds; instead, galleries were often empty by midafternoon.</div>
+      <p class="stem">As used in the text, <b>tepid</b> most nearly means</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q1" value="A"><span class="bubble">A</span><span class="choice-text">lukewarm or unenthusiastic.</span></label><label class="choice"><input type="radio" name="q1" value="B"><span class="bubble">B</span><span class="choice-text">unexpectedly expensive.</span></label><label class="choice"><input type="radio" name="q1" value="C"><span class="bubble">C</span><span class="choice-text">carefully planned.</span></label><label class="choice"><input type="radio" name="q1" value="D"><span class="bubble">D</span><span class="choice-text">highly controversial.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="2" data-answer="B" data-explain="Students with little background could follow — so lucid = clear.">
+      <div class="q-head">
+        <span class="q-num">Question 2</span>
+        <span class="topic">Craft and Structure · Words in Context</span>
+      </div>
+      <div class="passage">The biologist’s explanation of the experiment was so <b>lucid</b> that even students with little background in genetics could follow each step of the procedure.</div>
+      <p class="stem">As used in the text, <b>lucid</b> most nearly means</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q2" value="A"><span class="bubble">A</span><span class="choice-text">brightly lit.</span></label><label class="choice"><input type="radio" name="q2" value="B"><span class="bubble">B</span><span class="choice-text">clear and easy to understand.</span></label><label class="choice"><input type="radio" name="q2" value="C"><span class="bubble">C</span><span class="choice-text">overly technical.</span></label><label class="choice"><input type="radio" name="q2" value="D"><span class="bubble">D</span><span class="choice-text">brief and incomplete.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="3" data-answer="B" data-explain="Paired with “enormous scope,” ambitious means large in scale/intent.">
+      <div class="q-head">
+        <span class="q-num">Question 3</span>
+        <span class="topic">Craft and Structure · Words in Context</span>
+      </div>
+      <div class="passage">Critics argued that the mayor’s plan to revitalize downtown was <b>ambitious</b> but unrealistic, citing the city’s limited budget and the project’s enormous scope.</div>
+      <p class="stem">As used in the text, <b>ambitious</b> most nearly means</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q3" value="A"><span class="bubble">A</span><span class="choice-text">dishonest.</span></label><label class="choice"><input type="radio" name="q3" value="B"><span class="bubble">B</span><span class="choice-text">large in scale or intent.</span></label><label class="choice"><input type="radio" name="q3" value="C"><span class="bubble">C</span><span class="choice-text">popular with voters.</span></label><label class="choice"><input type="radio" name="q3" value="D"><span class="bubble">D</span><span class="choice-text">carefully researched.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="4" data-answer="B" data-explain="Several theories that vie as explanations = rival/alternative.">
+      <div class="q-head">
+        <span class="q-num">Question 4</span>
+        <span class="topic">Craft and Structure · Words in Context</span>
+      </div>
+      <div class="passage">Rather than offering a single explanation, the historian presents several <b>competing</b> theories about the city’s sudden decline in the 1800s.</div>
+      <p class="stem">As used in the text, <b>competing</b> most nearly means</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q4" value="A"><span class="bubble">A</span><span class="choice-text">athletic.</span></label><label class="choice"><input type="radio" name="q4" value="B"><span class="bubble">B</span><span class="choice-text">rival or alternative.</span></label><label class="choice"><input type="radio" name="q4" value="C"><span class="bubble">C</span><span class="choice-text">outdated.</span></label><label class="choice"><input type="radio" name="q4" value="D"><span class="bubble">D</span><span class="choice-text">incomplete.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="5" data-answer="A" data-explain="Few pages covering years of research = brief yet complete.">
+      <div class="q-head">
+        <span class="q-num">Question 5</span>
+        <span class="topic">Craft and Structure · Words in Context</span>
+      </div>
+      <div class="passage">The committee’s report was <b>concise</b>: in fewer than ten pages it summarized years of research and recommended three specific actions.</div>
+      <p class="stem">As used in the text, <b>concise</b> most nearly means</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q5" value="A"><span class="bubble">A</span><span class="choice-text">brief yet complete.</span></label><label class="choice"><input type="radio" name="q5" value="B"><span class="bubble">B</span><span class="choice-text">confusing.</span></label><label class="choice"><input type="radio" name="q5" value="C"><span class="bubble">C</span><span class="choice-text">harshly critical.</span></label><label class="choice"><input type="radio" name="q5" value="D"><span class="bubble">D</span><span class="choice-text">outdated.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="6" data-answer="B" data-explain="The whole passage explains how the waggle dance conveys food location.">
+      <div class="q-head">
+        <span class="q-num">Question 6</span>
+        <span class="topic">Information and Ideas · Central Ideas and Details</span>
+      </div>
+      <div class="passage">Honeybees communicate the location of food through a “waggle dance.” The angle of the dance relative to the sun indicates direction, while the duration of the waggle indicates distance. Researchers have shown that other bees can use this information to fly directly to the food source.</div>
+      <p class="stem">Which choice best states the main idea of the text?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q6" value="A"><span class="bubble">A</span><span class="choice-text">Honeybees produce honey by dancing near flowers.</span></label><label class="choice"><input type="radio" name="q6" value="B"><span class="bubble">B</span><span class="choice-text">Honeybees use a dance to tell others where food is located.</span></label><label class="choice"><input type="radio" name="q6" value="C"><span class="bubble">C</span><span class="choice-text">The sun’s position confuses honeybees searching for food.</span></label><label class="choice"><input type="radio" name="q6" value="D"><span class="bubble">D</span><span class="choice-text">Researchers taught honeybees a new form of communication.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="7" data-answer="C" data-explain="The text explicitly cites congestion and desire for reliable transit.">
+      <div class="q-head">
+        <span class="q-num">Question 7</span>
+        <span class="topic">Information and Ideas · Central Ideas and Details</span>
+      </div>
+      <div class="passage">In the 1960s, many cities replaced streetcars with buses, arguing that buses were more flexible and cheaper to operate. Decades later, some of those same cities began rebuilding rail lines, citing congestion and the desire for more reliable transit.</div>
+      <p class="stem">According to the text, why did some cities later rebuild rail lines?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q7" value="A"><span class="bubble">A</span><span class="choice-text">Buses had become more expensive than streetcars.</span></label><label class="choice"><input type="radio" name="q7" value="B"><span class="bubble">B</span><span class="choice-text">Streetcars were considered more flexible than buses.</span></label><label class="choice"><input type="radio" name="q7" value="C"><span class="bubble">C</span><span class="choice-text">Cities faced traffic problems and wanted more reliable transit.</span></label><label class="choice"><input type="radio" name="q7" value="D"><span class="bubble">D</span><span class="choice-text">The federal government required all cities to use rail.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="8" data-answer="B" data-explain="Absorbing wave energy during storms directly protects communities.">
+      <div class="q-head">
+        <span class="q-num">Question 8</span>
+        <span class="topic">Information and Ideas · Central Ideas and Details</span>
+      </div>
+      <div class="passage">Mangrove forests protect coastal communities by absorbing wave energy during storms. They also serve as nurseries for fish and store large amounts of carbon. Despite these benefits, mangrove areas continue to shrink due to coastal development.</div>
+      <p class="stem">Which detail from the text best supports the idea that mangroves help people?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q8" value="A"><span class="bubble">A</span><span class="choice-text">Mangrove areas continue to shrink.</span></label><label class="choice"><input type="radio" name="q8" value="B"><span class="bubble">B</span><span class="choice-text">Mangroves absorb wave energy during storms.</span></label><label class="choice"><input type="radio" name="q8" value="C"><span class="bubble">C</span><span class="choice-text">Coastal development is increasing.</span></label><label class="choice"><input type="radio" name="q8" value="D"><span class="bubble">D</span><span class="choice-text">Fish live in many ocean habitats.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="9" data-answer="B" data-explain="The text says her notes are cited as an early computer program.">
+      <div class="q-head">
+        <span class="q-num">Question 9</span>
+        <span class="topic">Information and Ideas · Central Ideas and Details</span>
+      </div>
+      <div class="passage">Ada Lovelace, writing in the 1840s about Charles Babbage’s proposed Analytical Engine, described a method for calculating Bernoulli numbers. Her notes are often cited as an early example of what would later be called a computer program.</div>
+      <p class="stem">The text most strongly suggests that Lovelace’s notes were notable because they</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q9" value="A"><span class="bubble">A</span><span class="choice-text">proved that Babbage’s machine could never be built.</span></label><label class="choice"><input type="radio" name="q9" value="B"><span class="bubble">B</span><span class="choice-text">contained an early form of computer programming.</span></label><label class="choice"><input type="radio" name="q9" value="C"><span class="bubble">C</span><span class="choice-text">were the first books printed about mathematics.</span></label><label class="choice"><input type="radio" name="q9" value="D"><span class="bubble">D</span><span class="choice-text">criticized the use of Bernoulli numbers.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="10" data-answer="B" data-explain="Visits and evening checkouts rose after evening hours were added.">
+      <div class="q-head">
+        <span class="q-num">Question 10</span>
+        <span class="topic">Information and Ideas · Inferences</span>
+      </div>
+      <div class="passage">When the library announced evening hours three nights a week, student visits increased sharply. Staff also noted that the number of books checked out after 6 p.m. rose more than daytime checkouts.</div>
+      <p class="stem">Based on the text, which statement is most strongly supported?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q10" value="A"><span class="bubble">A</span><span class="choice-text">Students prefer to study only in the morning.</span></label><label class="choice"><input type="radio" name="q10" value="B"><span class="bubble">B</span><span class="choice-text">Extended evening hours made the library more useful to students.</span></label><label class="choice"><input type="radio" name="q10" value="C"><span class="bubble">C</span><span class="choice-text">The library should eliminate daytime hours.</span></label><label class="choice"><input type="radio" name="q10" value="D"><span class="bubble">D</span><span class="choice-text">Book checkouts always decline when libraries stay open later.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="11" data-answer="A" data-explain="She prioritizes freshness and local growers over cost.">
+      <div class="q-head">
+        <span class="q-num">Question 11</span>
+        <span class="topic">Information and Ideas · Inferences</span>
+      </div>
+      <div class="passage">The chef insisted on buying produce from nearby farms, even when imported options were cheaper. She told reporters that freshness and supporting local growers mattered more to her than cutting costs.</div>
+      <p class="stem">It can reasonably be inferred that the chef</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q11" value="A"><span class="bubble">A</span><span class="choice-text">values local, fresh ingredients over the lowest price.</span></label><label class="choice"><input type="radio" name="q11" value="B"><span class="bubble">B</span><span class="choice-text">refuses to cook with any vegetables.</span></label><label class="choice"><input type="radio" name="q11" value="C"><span class="bubble">C</span><span class="choice-text">believes imported food is always unsafe.</span></label><label class="choice"><input type="radio" name="q11" value="D"><span class="bubble">D</span><span class="choice-text">plans to close her restaurant soon.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="12" data-answer="B" data-explain="Despite mixed early reviews, it stayed in print and is widely taught.">
+      <div class="q-head">
+        <span class="q-num">Question 12</span>
+        <span class="topic">Information and Ideas · Inferences</span>
+      </div>
+      <div class="passage">Although the novel received mixed reviews when it was first published, it has remained continuously in print for over a century and is now widely taught in high school literature courses.</div>
+      <p class="stem">Which inference is best supported by the text?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q12" value="A"><span class="bubble">A</span><span class="choice-text">The novel was immediately a bestseller.</span></label><label class="choice"><input type="radio" name="q12" value="B"><span class="bubble">B</span><span class="choice-text">Early mixed reviews did not prevent the novel’s lasting importance.</span></label><label class="choice"><input type="radio" name="q12" value="C"><span class="bubble">C</span><span class="choice-text">High schools only teach recently published books.</span></label><label class="choice"><input type="radio" name="q12" value="D"><span class="bubble">D</span><span class="choice-text">The author never wrote another novel.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="13" data-answer="C" data-explain="Pre-existing higher focus scores would explain the result without the walk.">
+      <div class="q-head">
+        <span class="q-num">Question 13</span>
+        <span class="topic">Information and Ideas · Command of Evidence</span>
+      </div>
+      <div class="passage">A study compared two groups of office workers. Group A took a ten-minute walk outdoors at midday; Group B remained indoors. In the afternoon, Group A completed a focus task 18% faster on average than Group B.</div>
+      <p class="stem">Which finding, if true, would most weaken the claim that outdoor walks improve afternoon focus?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q13" value="A"><span class="bubble">A</span><span class="choice-text">Group A workers reported enjoying the weather that day.</span></label><label class="choice"><input type="radio" name="q13" value="B"><span class="bubble">B</span><span class="choice-text">Group A and Group B had identical workloads in the morning.</span></label><label class="choice"><input type="radio" name="q13" value="C"><span class="bubble">C</span><span class="choice-text">Group A had already scored higher on focus tests before the study began.</span></label><label class="choice"><input type="radio" name="q13" value="D"><span class="bubble">D</span><span class="choice-text">The outdoor route was approximately half a mile long.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="14" data-answer="A" data-explain="A comparable city that saw increased bike commuting is direct supporting evidence.">
+      <div class="q-head">
+        <span class="q-num">Question 14</span>
+        <span class="topic">Information and Ideas · Command of Evidence</span>
+      </div>
+      <div class="passage">City planners claim that adding bike lanes on Main Street will increase the number of people who bicycle to work. They point to a survey in which 62% of residents said they would bike more if dedicated lanes existed.</div>
+      <p class="stem">Which piece of evidence would best support the planners’ claim?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q14" value="A"><span class="bubble">A</span><span class="choice-text">A nearby city saw bicycle commuting rise after installing similar lanes.</span></label><label class="choice"><input type="radio" name="q14" value="B"><span class="bubble">B</span><span class="choice-text">Main Street currently has heavy car traffic at rush hour.</span></label><label class="choice"><input type="radio" name="q14" value="C"><span class="bubble">C</span><span class="choice-text">Some residents prefer buses to bicycles.</span></label><label class="choice"><input type="radio" name="q14" value="D"><span class="bubble">D</span><span class="choice-text">Bike lanes are less expensive than building new parking garages.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="15" data-answer="A" data-explain="The experiment is presented as evidence for her claim.">
+      <div class="q-head">
+        <span class="q-num">Question 15</span>
+        <span class="topic">Information and Ideas · Command of Evidence</span>
+      </div>
+      <div class="passage">Dr. Kim argues that reading fiction improves empathy. She cites a laboratory experiment in which participants who read a short story scored higher on an empathy questionnaire than those who read a nonfiction article of the same length.</div>
+      <p class="stem">Which choice best describes the function of the cited experiment in the text?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q15" value="A"><span class="bubble">A</span><span class="choice-text">It provides evidence offered in support of Dr. Kim’s argument.</span></label><label class="choice"><input type="radio" name="q15" value="B"><span class="bubble">B</span><span class="choice-text">It contradicts Dr. Kim’s main claim.</span></label><label class="choice"><input type="radio" name="q15" value="C"><span class="bubble">C</span><span class="choice-text">It explains how empathy questionnaires are scored.</span></label><label class="choice"><input type="radio" name="q15" value="D"><span class="bubble">D</span><span class="choice-text">It summarizes the plot of the short story.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="16" data-answer="A" data-explain="Common assumption → correction → practical implication.">
+      <div class="q-head">
+        <span class="q-num">Question 16</span>
+        <span class="topic">Craft and Structure · Text Structure and Purpose</span>
+      </div>
+      <div class="passage">Most people assume that deserts are lifeless. In fact, deserts host specialized plants and animals adapted to extreme heat and scarce water. Understanding these adaptations can help scientists design better water-conservation technologies.</div>
+      <p class="stem">Which choice best describes the overall structure of the text?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q16" value="A"><span class="bubble">A</span><span class="choice-text">It presents a common belief, then challenges it and notes a practical benefit.</span></label><label class="choice"><input type="radio" name="q16" value="B"><span class="bubble">B</span><span class="choice-text">It lists desert animals and then describes a scientific experiment.</span></label><label class="choice"><input type="radio" name="q16" value="C"><span class="bubble">C</span><span class="choice-text">It argues that deserts should be converted into farmland.</span></label><label class="choice"><input type="radio" name="q16" value="D"><span class="bubble">D</span><span class="choice-text">It compares two competing theories about climate change.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="17" data-answer="B" data-explain="It gives visitor guidance: where to go, maps, tour times.">
+      <div class="q-head">
+        <span class="q-num">Question 17</span>
+        <span class="topic">Craft and Structure · Text Structure and Purpose</span>
+      </div>
+      <div class="passage">The following text is from a museum brochure: “Visitors are invited to explore the sculpture garden before entering the main galleries. Maps are available at the entrance, and guided tours begin every hour.”</div>
+      <p class="stem">The main purpose of the text is to</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q17" value="A"><span class="bubble">A</span><span class="choice-text">criticize the museum’s layout.</span></label><label class="choice"><input type="radio" name="q17" value="B"><span class="bubble">B</span><span class="choice-text">provide practical information for visitors.</span></label><label class="choice"><input type="radio" name="q17" value="C"><span class="bubble">C</span><span class="choice-text">compare sculpture to painting.</span></label><label class="choice"><input type="radio" name="q17" value="D"><span class="bubble">D</span><span class="choice-text">argue that guided tours are unnecessary.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="18" data-answer="C" data-explain="The second sentence contrasts with the first → However.">
+      <div class="q-head">
+        <span class="q-num">Question 18</span>
+        <span class="topic">Expression of Ideas · Transitions</span>
+      </div>
+      <div class="passage">Many students prefer digital textbooks because they are searchable and often cheaper. ______ some learners say they concentrate better when reading from printed pages.</div>
+      <p class="stem">Which choice completes the text with the most logical transition?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q18" value="A"><span class="bubble">A</span><span class="choice-text">Therefore,</span></label><label class="choice"><input type="radio" name="q18" value="B"><span class="bubble">B</span><span class="choice-text">For example,</span></label><label class="choice"><input type="radio" name="q18" value="C"><span class="bubble">C</span><span class="choice-text">However,</span></label><label class="choice"><input type="radio" name="q18" value="D"><span class="bubble">D</span><span class="choice-text">Likewise,</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="19" data-answer="B" data-explain="Sequential process: collect, then test → Next.">
+      <div class="q-head">
+        <span class="q-num">Question 19</span>
+        <span class="topic">Expression of Ideas · Transitions</span>
+      </div>
+      <div class="passage">The research team collected water samples from twelve lakes. ______ they tested each sample for microplastic particles.</div>
+      <p class="stem">Which choice completes the text with the most logical transition?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q19" value="A"><span class="bubble">A</span><span class="choice-text">Meanwhile,</span></label><label class="choice"><input type="radio" name="q19" value="B"><span class="bubble">B</span><span class="choice-text">Next,</span></label><label class="choice"><input type="radio" name="q19" value="C"><span class="bubble">C</span><span class="choice-text">In contrast,</span></label><label class="choice"><input type="radio" name="q19" value="D"><span class="bubble">D</span><span class="choice-text">Nevertheless,</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="20" data-answer="A" data-explain="Lower cost causes more affordability → As a result.">
+      <div class="q-head">
+        <span class="q-num">Question 20</span>
+        <span class="topic">Expression of Ideas · Transitions</span>
+      </div>
+      <div class="passage">Solar panels have become significantly less expensive over the past decade. ______ more households can now afford to install them.</div>
+      <p class="stem">Which choice completes the text with the most logical transition?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q20" value="A"><span class="bubble">A</span><span class="choice-text">As a result,</span></label><label class="choice"><input type="radio" name="q20" value="B"><span class="bubble">B</span><span class="choice-text">On the other hand,</span></label><label class="choice"><input type="radio" name="q20" value="C"><span class="bubble">C</span><span class="choice-text">For instance,</span></label><label class="choice"><input type="radio" name="q20" value="D"><span class="bubble">D</span><span class="choice-text">Regardless,</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="21" data-answer="A" data-explain="Opening date + historic register listing best emphasize historical significance.">
+      <div class="q-head">
+        <span class="q-num">Question 21</span>
+        <span class="topic">Expression of Ideas · Rhetorical Synthesis</span>
+      </div>
+      <div class="passage">While researching a local park for a class presentation, a student takes these notes:<br/>• Park opened in 1924<br/>• Designed by landscape architect Elena Ruiz<br/>• Features a rose garden and a lake<br/>• Hosts free summer concerts<br/>• Listed on the National Register of Historic Places in 1998</div>
+      <p class="stem">The student wants to emphasize the park’s historical significance. Which choice most effectively uses relevant information from the notes?</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q21" value="A"><span class="bubble">A</span><span class="choice-text">The park, which opened in 1924 and was listed on the National Register of Historic Places in 1998, was designed by Elena Ruiz.</span></label><label class="choice"><input type="radio" name="q21" value="B"><span class="bubble">B</span><span class="choice-text">The park has a rose garden and a lake and hosts free summer concerts.</span></label><label class="choice"><input type="radio" name="q21" value="C"><span class="bubble">C</span><span class="choice-text">Elena Ruiz designed parks in several cities.</span></label><label class="choice"><input type="radio" name="q21" value="D"><span class="bubble">D</span><span class="choice-text">Summer concerts at the park are free for visitors.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="22" data-answer="B" data-explain="Two independent clauses joined by coordinating conjunction need a comma before and.">
+      <div class="q-head">
+        <span class="q-num">Question 22</span>
+        <span class="topic">Standard English Conventions · Boundaries</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>The scientist presented her findings at the conference ______ the audience asked many detailed questions.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q22" value="A"><span class="bubble">A</span><span class="choice-text">; and</span></label><label class="choice"><input type="radio" name="q22" value="B"><span class="bubble">B</span><span class="choice-text">, and</span></label><label class="choice"><input type="radio" name="q22" value="C"><span class="bubble">C</span><span class="choice-text">: and</span></label><label class="choice"><input type="radio" name="q22" value="D"><span class="bubble">D</span><span class="choice-text">and,</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="23" data-answer="A" data-explain="An appositive (the book title) is set off with commas on both sides.">
+      <div class="q-head">
+        <span class="q-num">Question 23</span>
+        <span class="topic">Standard English Conventions · Boundaries</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>My favorite novel ______ <i>To Kill a Mockingbird</i>, is required reading in many schools.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q23" value="A"><span class="bubble">A</span><span class="choice-text">,</span></label><label class="choice"><input type="radio" name="q23" value="B"><span class="bubble">B</span><span class="choice-text">;</span></label><label class="choice"><input type="radio" name="q23" value="C"><span class="bubble">C</span><span class="choice-text">:</span></label><label class="choice"><input type="radio" name="q23" value="D"><span class="bubble">D</span><span class="choice-text">.</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="24" data-answer="C" data-explain="A colon introduces a list after an independent clause.">
+      <div class="q-head">
+        <span class="q-num">Question 24</span>
+        <span class="topic">Standard English Conventions · Boundaries</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>The recipe requires three ingredients ______ flour, sugar, and butter.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q24" value="A"><span class="bubble">A</span><span class="choice-text">;</span></label><label class="choice"><input type="radio" name="q24" value="B"><span class="bubble">B</span><span class="choice-text">,</span></label><label class="choice"><input type="radio" name="q24" value="C"><span class="bubble">C</span><span class="choice-text">:</span></label><label class="choice"><input type="radio" name="q24" value="D"><span class="bubble">D</span><span class="choice-text">—</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="25" data-answer="B" data-explain="Dependent clause before independent clause → comma.">
+      <div class="q-head">
+        <span class="q-num">Question 25</span>
+        <span class="topic">Standard English Conventions · Boundaries</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>Because the bridge was closed for repairs ______ drivers had to take a longer route.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q25" value="A"><span class="bubble">A</span><span class="choice-text">;</span></label><label class="choice"><input type="radio" name="q25" value="B"><span class="bubble">B</span><span class="choice-text">,</span></label><label class="choice"><input type="radio" name="q25" value="C"><span class="bubble">C</span><span class="choice-text">:</span></label><label class="choice"><input type="radio" name="q25" value="D"><span class="bubble">D</span><span class="choice-text">—</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="26" data-answer="B" data-explain="Subject is “pair” (singular), so “was left.”">
+      <div class="q-head">
+        <span class="q-num">Question 26</span>
+        <span class="topic">Standard English Conventions · Form, Structure, and Sense</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>The pair of shoes ______ on the porch all night.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q26" value="A"><span class="bubble">A</span><span class="choice-text">were left</span></label><label class="choice"><input type="radio" name="q26" value="B"><span class="bubble">B</span><span class="choice-text">was left</span></label><label class="choice"><input type="radio" name="q26" value="C"><span class="bubble">C</span><span class="choice-text">are left</span></label><label class="choice"><input type="radio" name="q26" value="D"><span class="bubble">D</span><span class="choice-text">have been leaving</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="27" data-answer="C" data-explain="With neither/nor, verb agrees with nearer subject “players” (plural) → were.">
+      <div class="q-head">
+        <span class="q-num">Question 27</span>
+        <span class="topic">Standard English Conventions · Form, Structure, and Sense</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>Neither the coach nor the players ______ ready to leave the stadium.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q27" value="A"><span class="bubble">A</span><span class="choice-text">was</span></label><label class="choice"><input type="radio" name="q27" value="B"><span class="bubble">B</span><span class="choice-text">is</span></label><label class="choice"><input type="radio" name="q27" value="C"><span class="bubble">C</span><span class="choice-text">were</span></label><label class="choice"><input type="radio" name="q27" value="D"><span class="bubble">D</span><span class="choice-text">has been</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="28" data-answer="B" data-explain="“Last summer” requires past tense → hosted.">
+      <div class="q-head">
+        <span class="q-num">Question 28</span>
+        <span class="topic">Standard English Conventions · Form, Structure, and Sense</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>Last summer, the museum ______ a special exhibit on ancient pottery.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q28" value="A"><span class="bubble">A</span><span class="choice-text">hosts</span></label><label class="choice"><input type="radio" name="q28" value="B"><span class="bubble">B</span><span class="choice-text">hosted</span></label><label class="choice"><input type="radio" name="q28" value="C"><span class="bubble">C</span><span class="choice-text">will host</span></label><label class="choice"><input type="radio" name="q28" value="D"><span class="bubble">D</span><span class="choice-text">hosting</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="29" data-answer="C" data-explain="Modifier “Walking…” must modify Maya (the walker), not spices.">
+      <div class="q-head">
+        <span class="q-num">Question 29</span>
+        <span class="topic">Standard English Conventions · Form, Structure, and Sense</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>Walking through the old market, ______.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q29" value="A"><span class="bubble">A</span><span class="choice-text">the spices smelled wonderful to Maya</span></label><label class="choice"><input type="radio" name="q29" value="B"><span class="bubble">B</span><span class="choice-text">wonderful spices were smelled by Maya</span></label><label class="choice"><input type="radio" name="q29" value="C"><span class="bubble">C</span><span class="choice-text">Maya smelled the wonderful spices</span></label><label class="choice"><input type="radio" name="q29" value="D"><span class="bubble">D</span><span class="choice-text">smelling wonderful spices was Maya</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    <article class="question" data-num="30" data-answer="C" data-explain="Parallel structure: excel, contribute, and demonstrate.">
+      <div class="q-head">
+        <span class="q-num">Question 30</span>
+        <span class="topic">Standard English Conventions · Form, Structure, and Sense</span>
+      </div>
+      
+      <p class="stem">Which choice completes the text so that it conforms to the conventions of Standard English?<br/><br/>The scholarship rewards students who excel in academics, contribute to their communities, and ______ leadership skills.</p>
+      <div class="choices"><label class="choice"><input type="radio" name="q30" value="A"><span class="bubble">A</span><span class="choice-text">demonstrating</span></label><label class="choice"><input type="radio" name="q30" value="B"><span class="bubble">B</span><span class="choice-text">to demonstrate</span></label><label class="choice"><input type="radio" name="q30" value="C"><span class="bubble">C</span><span class="choice-text">demonstrate</span></label><label class="choice"><input type="radio" name="q30" value="D"><span class="bubble">D</span><span class="choice-text">demonstration of</span></label></div>
+      <div class="feedback" hidden></div>
+    </article>
+    </form>
+
+    <section class="panel" id="results">
+      <h2>Sonuç / Results</h2>
+      <p class="score" id="scoreText">0 / 30</p>
+      <p id="scoreNote" style="color:var(--muted)"></p>
+      <button type="button" class="btn secondary" id="showKeyBtn" style="margin-top:.5rem">Cevap anahtarını göster</button>
+      <div id="answerKey" hidden style="text-align:left;margin-top:1rem"></div>
+    </section>
+
+    <footer class="note">
+      Unofficial practice material · Digital SAT® is a trademark of College Board.
+    </footer>
+  </div>
+
+<script>
+const ANSWERS = ["A", "B", "B", "B", "A", "B", "C", "B", "B", "B", "A", "B", "C", "A", "A", "A", "B", "C", "B", "A", "A", "B", "A", "C", "B", "B", "C", "B", "C", "C"];
+const form = document.getElementById('testForm');
+const answeredEl = document.getElementById('answered');
+const results = document.getElementById('results');
+const scoreText = document.getElementById('scoreText');
+const scoreNote = document.getElementById('scoreNote');
+const answerKey = document.getElementById('answerKey');
+
+function countAnswered() {
+  let n = 0;
+  for (let i = 1; i <= 30; i++) {
+    if (form.querySelector(`input[name="q${i}"]:checked`)) n++;
+  }
+  answeredEl.textContent = n;
+}
+
+form.addEventListener('change', countAnswered);
+
+document.getElementById('checkBtn').addEventListener('click', () => {
+  let correct = 0;
+  const articles = form.querySelectorAll('.question');
+  articles.forEach((art, idx) => {
+    const ans = art.dataset.answer;
+    const picked = form.querySelector(`input[name="q${idx + 1}"]:checked`);
+    const fb = art.querySelector('.feedback');
+    art.classList.remove('correct', 'wrong');
+    fb.hidden = false;
+    if (picked && picked.value === ans) {
+      correct++;
+      art.classList.add('correct');
+      fb.className = 'feedback ok';
+      fb.textContent = `Doğru · ${ans}. ${art.dataset.explain}`;
+    } else {
+      art.classList.add('wrong');
+      fb.className = 'feedback bad';
+      const yours = picked ? picked.value : '—';
+      fb.textContent = `Yanlış (senin: ${yours}, doğru: ${ans}). ${art.dataset.explain}`;
+    }
+  });
+  results.classList.add('show');
+  scoreText.textContent = `${correct} / 30`;
+  const pct = Math.round((correct / 30) * 100);
+  scoreNote.textContent = pct >= 80
+    ? `Harika iş — %${pct}. Temel konular güçlü görünüyor.`
+    : pct >= 60
+      ? `İyi başlangıç — %${pct}. Yanlışları gözden geçir.`
+      : `%${pct}. Cevap anahtarı ve açıklamalarla tekrar et.`;
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  form.reset();
+  form.querySelectorAll('.question').forEach(art => {
+    art.classList.remove('correct', 'wrong');
+    const fb = art.querySelector('.feedback');
+    fb.hidden = true;
+    fb.textContent = '';
+  });
+  results.classList.remove('show');
+  answerKey.hidden = true;
+  answerKey.innerHTML = '';
+  countAnswered();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.getElementById('showKeyBtn').addEventListener('click', () => {
+  if (!answerKey.hidden && answerKey.innerHTML) {
+    answerKey.hidden = true;
+    return;
+  }
+  answerKey.innerHTML = ANSWERS.map((a, i) => `<strong>${i + 1}.</strong> ${a}`).join(' &nbsp;&nbsp; ');
+  answerKey.hidden = false;
+});
+</script>
+</body>
+</html>
