@@ -54,9 +54,6 @@ def build_html(questions):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SAT Reading &amp; Writing Practice Test — 30 Questions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {{
   --ink: #1a2332;
@@ -75,7 +72,7 @@ def build_html(questions):
 * {{ box-sizing: border-box; }}
 body {{
   margin: 0;
-  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--ink);
   background:
     radial-gradient(900px 420px at 10% -10%, #dfe9f2 0%, transparent 55%),
@@ -105,7 +102,7 @@ header.hero .eyebrow {{
   margin: 0 0 .5rem;
 }}
 header.hero h1 {{
-  font-family: Literata, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 600;
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   margin: 0 0 .35rem;
@@ -139,7 +136,7 @@ header.hero .sub {{
   box-shadow: var(--shadow);
 }}
 .panel h2 {{
-  font-family: Literata, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1.15rem;
   margin: 0 0 .6rem;
   color: var(--navy);
@@ -208,7 +205,7 @@ header.hero .sub {{
   font-style: italic;
 }}
 .passage {{
-  font-family: Literata, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   background: #f0f4f8;
   border-left: 3px solid var(--teal);
   padding: .85rem 1rem;
@@ -264,7 +261,7 @@ header.hero .sub {{
 #results {{ display: none; text-align: center; }}
 #results.show {{ display: block; }}
 #results .score {{
-  font-family: Literata, Georgia, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2.4rem;
   font-weight: 600;
   color: var(--navy);
