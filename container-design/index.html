@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATELIER — ICON Villa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #12100e;
+      --soft: rgba(18, 16, 14, 0.62);
+      --stone: #7a7368;
+      --paper: #f4efe7;
+      --sand: #e4d9c8;
+      --teak: #6f4a2f;
+      --steel: #1d1b19;
+      --line: rgba(18, 16, 14, 0.12);
+      --glow: #f2e6d4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 640px at 8% -8%, rgba(111, 74, 47, 0.16), transparent 55%),
+        radial-gradient(900px 520px at 100% 0%, rgba(29, 27, 25, 0.12), transparent 48%),
+        linear-gradient(180deg, #ebe2d4 0%, var(--paper) 40%, #f6f1ea 100%);
+      line-height: 1.55;
+    }
+
+    img { display: block; width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1140px, calc(100% - 2.4rem));
+      margin-inline: auto;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: var(--glow);
+    }
+
+    .hero__media,
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero__media { z-index: 0; }
+    .hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 55% 45%;
+      transform: scale(1.04);
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    .hero__shade {
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(10, 8, 6, 0.2) 0%, rgba(10, 8, 6, 0.28) 45%, rgba(10, 8, 6, 0.82) 100%),
+        linear-gradient(90deg, rgba(10, 8, 6, 0.5) 0%, transparent 58%);
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(2rem, 6vw, 4.5rem) 0 clamp(2.6rem, 7vw, 5rem);
+      max-width: 40rem;
+      animation: rise 1.05s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.5rem, 9.5vw, 6.8rem);
+      font-weight: 600;
+      letter-spacing: 0.045em;
+      line-height: 0.9;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.2;
+      max-width: 16ch;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero p {
+      color: rgba(242, 230, 212, 0.84);
+      max-width: 36ch;
+      margin-bottom: 1.55rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.85rem;
+      padding: 0 1.25rem;
+      border: 1px solid transparent;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn--solid { background: var(--glow); color: var(--ink); }
+    .btn--ghost {
+      border-color: rgba(242, 230, 212, 0.5);
+      color: var(--glow);
+      background: transparent;
+    }
+
+    section { padding: clamp(3.4rem, 8vw, 6.4rem) 0; }
+
+    .section-head {
+      max-width: 36rem;
+      margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+    }
+
+    .eyebrow {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teak);
+      margin-bottom: 0.7rem;
+    }
+
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4.6vw, 3.2rem);
+      font-weight: 550;
+      line-height: 1.08;
+      margin-bottom: 0.75rem;
+    }
+
+    .lede { color: var(--soft); font-size: 1.02rem; }
+
+    .full-bleed { width: 100%; overflow: hidden; }
+    .full-bleed img {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: cover;
+      animation: softZoom 18s ease-in-out infinite alternate;
+    }
+
+    .spec-grid {
+      display: grid;
+      gap: 1.6rem 2.4rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      padding-top: 1.7rem;
+      margin-top: 2rem;
+    }
+
+    .spec dt {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 0.3rem;
+    }
+
+    .spec dd {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    .split {
+      display: grid;
+      gap: clamp(1.4rem, 4vw, 2.8rem);
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+    }
+
+    .media-frame {
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    .media-frame img {
+      width: 100%;
+      height: min(68vh, 540px);
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .media-frame:hover img { transform: scale(1.03); }
+
+    .points {
+      display: grid;
+      gap: 0.95rem;
+      margin-top: 1.35rem;
+    }
+
+    .point {
+      padding-bottom: 0.95rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .point strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.98rem;
+    }
+
+    .point span { color: var(--soft); font-size: 0.93rem; }
+
+    .gallery {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1.35fr 1fr;
+    }
+
+    .gallery .media-frame:nth-child(2) img,
+    .gallery .media-frame:nth-child(3) img {
+      height: 100%;
+      min-height: 260px;
+    }
+
+    .gallery .wide { grid-column: 1 / -1; }
+    .gallery .wide img {
+      height: min(62vh, 520px);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0 2.7rem;
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes drift {
+      from { transform: scale(1.04) translate3d(0, 0, 0); }
+      to { transform: scale(1.08) translate3d(-1.1%, -0.5%, 0); }
+    }
+
+    @keyframes softZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.035); }
+    }
+
+    @media (max-width: 860px) {
+      .split,
+      .gallery,
+      .spec-grid { grid-template-columns: 1fr; }
+
+      .gallery .media-frame:nth-child(2) img,
+      .gallery .media-frame:nth-child(3) img {
+        height: min(52vh, 400px);
+        min-height: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img src="./assets/wow-container-exterior.jpg" alt="" />
+    </div>
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="wrap hero__content">
+      <p class="brand">ATELIER</p>
+      <h1>Keşke benim olsa dedirtecek villa</h1>
+      <p>Konsol konteyner kütleleri, sonsuzluk havuzu, frameless cam ve smoked teak — her bakışta wow.</p>
+      <div class="cta-row">
+        <a class="btn btn--solid" href="#ikon">İkon form</a>
+        <a class="btn btn--ghost" href="#yasam">Yaşam alanı</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="ikon">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">ICON Villa</p>
+        <h2>Sıradan konteyner değil — yüzen mimari</h2>
+        <p class="lede">İki ofset siyah çelik hacim, açık beton kaide ve yansıtıcı sonsuzluk havuzu. Cantilever silüet, gece LED knife-edge çizgisi.</p>
+      </div>
+    </div>
+    <div class="full-bleed">
+      <img src="./assets/wow-container-exterior.jpg" alt="Ultra modern konsol konteyner villa ve sonsuzluk havuzu" />
+    </div>
+    <div class="wrap">
+      <dl class="spec-grid spec">
+        <div>
+          <dt>Form</dt>
+          <dd>Çift ofset konsol konteyner hacim</dd>
+        </div>
+        <div>
+          <dt>Cephe</dt>
+          <dd>Board-form beton + smoked teak fin</dd>
+        </div>
+        <div>
+          <dt>Cam</dt>
+          <dd>Frameless köşe + alüminyum termal break</dd>
+        </div>
+        <div>
+          <dt>Zemin</dt>
+          <dd>Cilalı charcoal beton plinth + infinity pool</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="malzeme">
+    <div class="wrap split">
+      <div class="media-frame">
+        <img src="./assets/wow-container-detail.jpg" alt="Beton, teak ve alüminyum doğrama detayı" />
+      </div>
+      <div>
+        <div class="section-head" style="margin-bottom: 0;">
+          <p class="eyebrow">Malzeme dili</p>
+          <h2>Dokunmak istediğin yüzeyler</h2>
+          <p class="lede">Soğuk çelik, sıcak ahşap ve yumuşak beton — lüks ama sakin bir kontrast.</p>
+        </div>
+        <div class="points">
+          <div class="point">
+            <strong>Blackened steel gövde</strong>
+            <span>Mat siyah metal, modern ve ikonik silüet</span>
+          </div>
+          <div class="point">
+            <strong>Smoked teak finler</strong>
+            <span>Dikey ahşap ritim, gölge ve derinlik</span>
+          </div>
+          <div class="point">
+            <strong>Board-form pale beton</strong>
+            <span>Mimari dokulu, zamansız dış yüzey</span>
+          </div>
+          <div class="point">
+            <strong>Alüminyum doğrama + Low-E cam</strong>
+            <span>İnce bronz profil, termal kırılma, yüksek yalıtım</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="yasam">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">İç dünya</p>
+        <h2>Alçı pan sessizliği, havuza açılan cam duvar</h2>
+        <p class="lede">Derzsiz alçı pan, meşe zemin, gizli LED, monolitik beton ada — dergi kapağı yaşam alanı.</p>
+      </div>
+      <div class="gallery">
+        <div class="media-frame">
+          <img src="./assets/wow-container-interior.jpg" alt="Ultra modern konteyner villa iç mekan" />
+        </div>
+        <div class="media-frame">
+          <img src="./assets/wow-container-pool-night.jpg" alt="Gece infinity pool yansımalı villa" />
+        </div>
+        <div class="media-frame wide">
+          <img src="./assets/wow-container-aerial.jpg" alt="Havadan ICON villa görünümü" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <strong>ATELIER · ICON</strong>
+      <p style="margin-top: 0.4rem;">Ultra modern konteyner villa konsepti — konsol form, sonsuzluk havuzu, beton, teak, alçı pan, alüminyum doğrama.</p>
+    </div>
+  </footer>
+</body>
+</html>
